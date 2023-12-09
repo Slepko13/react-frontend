@@ -22,7 +22,6 @@ describe('tests validators', () => {
     it('test required', () => {
         expect(required('Test')).toBeTruthy();
     });
-
     it('test email', () => {
         expect(email('false.mail')).toBeFalsy();
     });

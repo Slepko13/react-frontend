@@ -12,6 +12,7 @@ import SinglePostPage from './pages/Feed/SinglePost/SinglePost';
 import LoginPage from './pages/Auth/Login';
 import SignupPage from './pages/Auth/Signup';
 import './App.css';
+import { sum } from './util/test-typescript';
 
 class App extends Component {
     state = {
@@ -162,6 +163,7 @@ class App extends Component {
     };
 
     render() {
+        console.log(sum(4, 8));
         let routes = (
             <Switch>
                 <Route

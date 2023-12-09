@@ -7,9 +7,11 @@
         "start": "webpack serve --open --hot",
         "watch": "webpack --watch",
         "build": "NODE_ENV=production webpack",
+        "build:dev": "webpack --env mode=development",
+        "build:prod": "webpack --env mode=production",
         "prepare": "husky install",
         "prettier": "prettier --write .",
-        "lint": "eslint --fix .",
+        "lint": "eslint --fix ./src",
         "lint:check": "eslint ./src",
         "test": "jest",
         "test:watch": "jest --watch",
@@ -34,6 +36,11 @@
         "@commitlint/config-conventional": "^17.3.0",
         "@testing-library/react": "12.1.2",
         "@types/jest": "^29.5.11",
+        "@types/node": "^20.10.4",
+        "@types/webpack": "^5.28.5",
+        "@types/webpack-dev-server": "^4.7.2",
+        "@typescript-eslint/eslint-plugin": "5.9.0",
+        "@typescript-eslint/parser": "^5.0.0",
         "babel-jest": "^29.7.0",
         "babel-loader": "^9.1.0",
         "css-loader": "^6.7.3",
@@ -59,12 +66,18 @@
         "prettier": "^2.8.1",
         "sass": "^1.57.1",
         "sass-loader": "^13.2.0",
+        "ts-loader": "^9.5.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3",
         "webpack": "^5.75.0",
         "webpack-cli": "^5.0.1",
         "webpack-dev-server": "^4.11.1"
     },
+    "engine": {
+        "node": "18.19.0"
+    },
     "lint-staged": {
         "*": "prettier --write --ignore-unknown ./src",
-        "*.(ts|js|jsx|tsx)": "eslint --fix ./src"
+        "*.(js|jsx)": "eslint --fix ./src"
     }
 }
