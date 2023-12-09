@@ -13,7 +13,7 @@ const input = (props) => (
                 ].join(' ')}
                 type={props.type}
                 id={props.id}
-                data-testId={props.testId}
+                data-testid={props.testId}
                 required={props.required}
                 value={props.value}
                 placeholder={props.placeholder}
@@ -30,7 +30,7 @@ const input = (props) => (
                     props.touched ? 'touched' : 'untouched',
                 ].join(' ')}
                 id={props.id}
-                data-testId={props.testId}
+                data-testid={props.testId}
                 rows={props.rows}
                 required={props.required}
                 value={props.value}

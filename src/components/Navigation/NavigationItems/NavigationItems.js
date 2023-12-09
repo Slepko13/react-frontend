@@ -24,7 +24,7 @@ const navigationItems = (props) => [
                     to={item.link}
                     exact
                     onClick={props.onChoose}
-                    data-testId={item.id}
+                    data-testid={item.id}
                 >
                     {item.text}
                 </NavLink>

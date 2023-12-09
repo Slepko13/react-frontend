@@ -12,7 +12,7 @@ const filePicker = (props) => (
             ].join(' ')}
             type="file"
             id={props.id}
-            data-testId={props.testId}
+            data-testid={props.testId}
             onChange={(e) =>
                 props.onChange(props.id, e.target.value, e.target.files)
             }
