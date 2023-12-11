@@ -36,7 +36,6 @@ class Feed extends Component {
                 return res.json();
             })
             .then((resData) => {
-                console.log(resData, 'res');
                 this.setState({ status: resData.status });
             })
             .catch(this.catchError);

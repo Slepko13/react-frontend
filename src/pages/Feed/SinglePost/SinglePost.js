@@ -44,15 +44,22 @@ class SinglePost extends Component {
 
     render() {
         return (
-            <section className="single-post">
+            <section
+                data-testid={`single-post-${this.props.match.params.postId}`}
+                className="single-post"
+            >
                 <h1>{this.state.title}</h1>
-                <h2>
+                <h2 data-testid="single-post-title">
                     Created by {this.state.author} on {this.state.date}
                 </h2>
                 <div className="single-post__image">
-                    <Image contain imageUrl={this.state.image} />
+                    <Image
+                        data-testid="single-post-image"
+                        contain
+                        imageUrl={this.state.image}
+                    />
                 </div>
-                <p>{this.state.content}</p>
+                <p data-testid="single-post-content">{this.state.content}</p>
             </section>
         );
     }
