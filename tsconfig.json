@@ -4,7 +4,7 @@
         "noImplicitAny": true,
         "module": "ESNext",
         "target": "es5",
-        "jsx": "react",
+        "jsx": "react", //use "react-jsx" for react 17+
         "allowJs": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,

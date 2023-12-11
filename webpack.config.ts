@@ -1,18 +1,15 @@
 import { resolve } from 'path';
-
-import webpack from 'webpack';
-import 'webpack-dev-server';
-
 import HTMLWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin, {
-    loader as _loader,
-} from 'mini-css-extract-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import type { Configuration } from 'webpack';
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 
 type Mode = 'production' | 'development';
 type Target = 'browserslist' | 'web';
 
 interface EnvVariables {
     mode: Mode;
+    port: number;
 }
 
 const target: Target =
@@ -21,7 +18,9 @@ const mode: Mode =
     process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 export default (env: EnvVariables) => {
-    const config: webpack.Configuration = {
+    const isDev = env.mode === 'development';
+
+    const config: Configuration = {
         mode: env.mode ?? mode, // just 2 ways to pass mode(we have different scripts)
         target,
 
@@ -30,19 +29,22 @@ export default (env: EnvVariables) => {
 
         output: {
             path: resolve(__dirname, 'build'),
-            filename: 'bundle.js',
+            filename: 'bundle.[contenthash].js',
             assetModuleFilename: 'images/[hash][ext][query]',
             clean: true,
         },
-        devtool: 'source-map',
 
         plugins: [
             new HTMLWebpackPlugin({
                 // template: './public/index.html',
                 template: resolve(__dirname, 'public', 'index.html'),
             }),
-            new MiniCssExtractPlugin(),
-        ],
+            !isDev &&
+                new MiniCssExtractPlugin({
+                    filename: 'css/[name][contenthash].css',
+                    chunkFilename: 'css/[name][id][contenthash].css',
+                }),
+        ].filter(Boolean),
 
         module: {
             rules: [
@@ -57,7 +59,7 @@ export default (env: EnvVariables) => {
                 {
                     test: /\.(s[ac]|c)ss$/i,
                     use: [
-                        _loader,
+                        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
                             loader: 'postcss-loader',
@@ -93,10 +95,13 @@ export default (env: EnvVariables) => {
         resolve: {
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
-        devServer: {
-            port: 3000,
-            hot: true,
-        },
+        devtool: isDev ? 'inline-source-map' : false,
+        devServer: isDev
+            ? {
+                  port: env.port ?? 3000,
+                  hot: true,
+              }
+            : undefined,
     };
 
     return config;
