@@ -8,7 +8,7 @@ module.exports = {
     },
     moduleNameMapper: {
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-        // '^.+\\.(css|less)$': '<rootDir>/config/CSSStub.js'
+        // '^.+\\.(css|less)$': '<rootDir>/config/css/CSSStub.js'
     },
     collectCoverage: true,
     testPathIgnorePatterns: ['/node_modules/', '/build/'],
