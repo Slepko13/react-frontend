@@ -24,8 +24,8 @@ export default (env: EnvVariables) => {
         mode: env.mode ?? mode, // just 2 ways to pass mode(we have different scripts)
         target,
 
-        // entry: './src/index.js',
-        entry: resolve(__dirname, 'src', 'index.js'),
+        // entry: './src/index.jsx',
+        entry: resolve(__dirname, 'src', 'index.jsx'),
 
         output: {
             path: resolve(__dirname, 'build'),
