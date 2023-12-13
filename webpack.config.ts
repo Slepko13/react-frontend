@@ -1,4 +1,5 @@
 import type { Configuration } from 'webpack';
+
 import { resolve } from 'path';
 
 import { buildWebpack } from './config/build/build-webpack';
