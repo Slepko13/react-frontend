@@ -33,6 +33,7 @@ module.exports = {
         'no-console': 'warn',
         'no-unused-vars': 'warn',
         '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-var-requires': 'off',
         'arrow-body-style': 'off',
         'prefer-arrow-callback': 'off',
         'react/react-in-jsx-scope': 'off',
