@@ -5,15 +5,6 @@ import { BuildOptions } from './types/types';
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     const isDev = options.mode === 'development';
 
-    const postCssLoader = {
-        loader: 'postcss-loader',
-        options: {
-            postcssOptions: {
-                plugins: ['postcss-preset-env'],
-            },
-        },
-    };
-
     const cssModuleLoader = {
         loader: 'css-loader',
         options: {
@@ -23,6 +14,14 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
                     : '[hash:base64:5]',
             },
             importLoaders: 1,
+        },
+    };
+    const postCssLoader = {
+        loader: 'postcss-loader',
+        options: {
+            postcssOptions: {
+                plugins: ['postcss-preset-env'],
+            },
         },
     };
     const imageLoader = {

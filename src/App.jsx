@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, lazy, Suspense } from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
@@ -7,12 +7,15 @@ import Toolbar from './components/Toolbar/Toolbar';
 import MainNavigation from './components/Navigation/MainNavigation/MainNavigation';
 import MobileNavigation from './components/Navigation/MobileNavigation/MobileNavigation';
 import ErrorHandler from './components/ErrorHandler/ErrorHandler';
-import FeedPage from './pages/Feed/Feed';
-import SinglePostPage from './pages/Feed/SinglePost/SinglePost';
-import LoginPage from './pages/Auth/Login';
-import SignupPage from './pages/Auth/Signup';
+
 import classes from './App.module.css';
 
+const LazyLoginPage = lazy(() => import('./pages/Auth/Login'));
+const LazySignupPage = lazy(() => import('./pages/Auth/Signup'));
+const LazyFeedPage = lazy(() => import('./pages/Feed/Feed'));
+const LazySinglePostPage = lazy(() =>
+    import('./pages/Feed/SinglePost/SinglePost')
+);
 class App extends Component {
     state = {
         showBackdrop: false,
@@ -168,22 +171,26 @@ class App extends Component {
                     path="/"
                     exact
                     render={(props) => (
-                        <LoginPage
-                            {...props}
-                            onLogin={this.loginHandler}
-                            loading={this.state.authLoading}
-                        />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <LazyLoginPage
+                                {...props}
+                                onLogin={this.loginHandler}
+                                loading={this.state.authLoading}
+                            />
+                        </Suspense>
                     )}
                 />
                 <Route
                     path="/signup"
                     exact
                     render={(props) => (
-                        <SignupPage
-                            {...props}
-                            onSignup={this.signupHandler}
-                            loading={this.state.authLoading}
-                        />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <LazySignupPage
+                                {...props}
+                                onSignup={this.signupHandler}
+                                loading={this.state.authLoading}
+                            />
+                        </Suspense>
                     )}
                 />
                 <Redirect to="/" />
@@ -196,20 +203,24 @@ class App extends Component {
                         path="/"
                         exact
                         render={(props) => (
-                            <FeedPage
-                                userId={this.state.userId}
-                                token={this.state.token}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <LazyFeedPage
+                                    userId={this.state.userId}
+                                    token={this.state.token}
+                                />
+                            </Suspense>
                         )}
                     />
                     <Route
                         path="/:postId"
                         render={(props) => (
-                            <SinglePostPage
-                                {...props}
-                                userId={this.state.userId}
-                                token={this.state.token}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <LazySinglePostPage
+                                    {...props}
+                                    userId={this.state.userId}
+                                    token={this.state.token}
+                                />
+                            </Suspense>
                         )}
                     />
                     <Redirect to="/" />

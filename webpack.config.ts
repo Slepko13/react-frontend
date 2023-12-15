@@ -8,6 +8,7 @@ import { BuildMode } from './config/build/types/types';
 interface EnvVariables {
     mode: BuildMode;
     port: number;
+    analyzer?: boolean;
 }
 
 export default (env: EnvVariables) => {
@@ -21,6 +22,7 @@ export default (env: EnvVariables) => {
         target: env.mode === 'production' ? 'browserslist' : 'web',
         mode: env.mode === 'production' ? 'production' : 'development',
         port: env.port ?? 3000,
+        analyzer: env.analyzer,
         paths,
     });
 

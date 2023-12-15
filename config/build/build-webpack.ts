@@ -20,6 +20,12 @@ export function buildWebpack(options: BuildOptions): Configuration {
             filename: 'bundle.[contenthash].js',
             assetModuleFilename: 'images/[hash][ext][query]',
             clean: true,
+            chunkFilename: 'chunk.[contenthash].js',
+        },
+        optimization: {
+            splitChunks: {
+                chunks: 'all',
+            },
         },
 
         plugins: buildPlugins(options),
