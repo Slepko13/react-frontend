@@ -12,7 +12,7 @@ declare module '*.jpeg';
 
 // Doesn't work?
 declare module '*.svg' {
-    import * as React from 'react';
+    import React from 'react';
 
     const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
 
