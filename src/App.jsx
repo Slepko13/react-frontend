@@ -11,8 +11,7 @@ import FeedPage from './pages/Feed/Feed';
 import SinglePostPage from './pages/Feed/SinglePost/SinglePost';
 import LoginPage from './pages/Auth/Login';
 import SignupPage from './pages/Auth/Signup';
-import './App.css';
-import { sum } from './util/test-typescript';
+import classes from './App.module.css';
 
 class App extends Component {
     state = {
@@ -163,7 +162,6 @@ class App extends Component {
     };
 
     render() {
-        console.log(sum(4, 8));
         let routes = (
             <Switch>
                 <Route
@@ -253,6 +251,7 @@ class App extends Component {
                         />
                     }
                 />
+                <div className={classes.danger}>Custom test text</div>
                 {routes}
             </Fragment>
         );

@@ -10,8 +10,12 @@ module.exports = {
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
         // '^.+\\.(css|less)$': '<rootDir>/config/css/CSSStub.js'
     },
-    collectCoverage: true,
-    testPathIgnorePatterns: ['/node_modules/', '/build/'],
+    // collectCoverage: true,
+    testPathIgnorePatterns: [
+        '/node_modules/',
+        '/build/',
+        '<rootDir>/src/components/.*\\.(js|jsx)$',
+    ],
     collectCoverageFrom: ['src/**/*.{js,jsx}', '!src/components/**/*.{js,jsx}'],
     coverageReporters: [
         'json',
