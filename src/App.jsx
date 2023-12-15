@@ -9,6 +9,7 @@ import MobileNavigation from './components/Navigation/MobileNavigation/MobileNav
 import ErrorHandler from './components/ErrorHandler/ErrorHandler';
 
 import classes from './App.module.css';
+import Cloud from './assets/simple-cloud.svg';
 
 const LazyLoginPage = lazy(() => import('./pages/Auth/Login'));
 const LazySignupPage = lazy(() => import('./pages/Auth/Signup'));
@@ -262,8 +263,10 @@ class App extends Component {
                         />
                     }
                 />
+
                 <div className={classes.danger}>Custom test text</div>
                 {routes}
+                <Cloud width="50px" height="50px" fill={'red'} />
             </Fragment>
         );
     }
