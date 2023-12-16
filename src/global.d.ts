@@ -18,3 +18,5 @@ declare module '*.svg' {
 
     export default SVG;
 }
+
+declare const __PLATFORM__: 'desktop' | 'mobile';

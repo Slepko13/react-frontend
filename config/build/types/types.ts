@@ -7,6 +7,7 @@ export interface BuildPaths {
 export type BuildMode = 'production' | 'development';
 
 export type BuildTarget = 'browserslist' | 'web';
+export type BuildPlatform = 'mobile' | 'desktop';
 
 export interface BuildOptions {
     port: number;
@@ -14,4 +15,5 @@ export interface BuildOptions {
     mode: BuildMode;
     target: BuildTarget;
     analyzer?: boolean;
+    platform?: BuildPlatform;
 }

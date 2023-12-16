@@ -264,7 +264,14 @@ class App extends Component {
                     }
                 />
 
-                <div className={classes.danger}>Custom test text</div>
+                <div className={classes.danger}>
+                    {
+                        // eslint-disable-next-line no-undef
+                        __PLATFORM__ === 'desktop'
+                            ? 'DESKTOPBUILD'
+                            : 'MOBILEBUILD'
+                    }
+                </div>
                 {routes}
                 <Cloud width="50px" height="50px" fill={'red'} />
             </Fragment>
