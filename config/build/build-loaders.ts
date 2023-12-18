@@ -1,6 +1,7 @@
 import { ModuleOptions } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BuildOptions } from './types/types';
+import { buildBabelLoader } from './babel/buildBabelLoader';
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     const isDev = options.mode === 'development';
@@ -62,18 +63,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
             'sass-loader',
         ],
     };
-    const babelLoader = {
-        test: /\.[t,j]sx?$/,
-        exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-            options: {
-                plugins: [
-                    isDev && require.resolve('react-refresh/babel'),
-                ].filter(Boolean),
-            },
-        },
-    };
+    const babelLoader = buildBabelLoader(options);
     // const tsLoader = {
     //     test: /\.tsx?$/,
     //     use: 'ts-loader',

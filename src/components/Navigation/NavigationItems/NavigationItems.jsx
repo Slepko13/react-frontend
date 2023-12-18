@@ -32,7 +32,7 @@ const navigationItems = (props) => [
         )),
     props.isAuth && (
         <li className="navigation-item" key="logout">
-            <button onClick={props.onLogout} data-testId="logout">
+            <button onClick={props.onLogout} data-testid="logout">
                 Logout
             </button>
         </li>
