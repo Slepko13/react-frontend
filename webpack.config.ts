@@ -17,6 +17,7 @@ export default (env: EnvVariables) => {
         output: resolve(__dirname, 'build'),
         entry: resolve(__dirname, 'src', 'index.jsx'),
         html: resolve(__dirname, 'public', 'index.html'),
+        favicon: resolve(__dirname, 'public', 'test-favicon.png'),
     };
 
     const config: Configuration = buildWebpack({

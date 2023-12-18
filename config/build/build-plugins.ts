@@ -14,6 +14,7 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     const plugins: Configuration['plugins'] = [
         new HTMLWebpackPlugin({
             template: options.paths.html,
+            favicon: options.paths.favicon,
         }),
         new DefinePlugin({
             __PLATFORM__: JSON.stringify(options.platform),
