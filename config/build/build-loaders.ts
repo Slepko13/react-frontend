@@ -63,20 +63,22 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         ],
     };
     const babelLoader = {
-        test: /\.jsx?$/,
+        test: /\.[t,j]sx?$/,
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
             options: {
-                presets: ['@babel/preset-env', '@babel/preset-react'],
+                plugins: [
+                    isDev && require.resolve('react-refresh/babel'),
+                ].filter(Boolean),
             },
         },
     };
-    const tsLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-    };
+    // const tsLoader = {
+    //     test: /\.tsx?$/,
+    //     use: 'ts-loader',
+    //     exclude: /node_modules/,
+    // };
 
     return [
         imageLoader,
@@ -85,6 +87,6 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         stylesSimpleLoader,
         stylesModuleLoader,
         babelLoader,
-        tsLoader,
+        // tsLoader,
     ];
 }
