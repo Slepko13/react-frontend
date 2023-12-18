@@ -1,9 +1,9 @@
-import type { Configuration } from 'webpack';
-
 import { resolve } from 'path';
 
 import { buildWebpack } from './config/build/build-webpack';
 import { BuildMode, BuildPlatform } from './config/build/types/types';
+
+import type { Configuration } from 'webpack';
 
 interface EnvVariables {
     mode?: BuildMode;
